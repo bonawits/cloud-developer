@@ -13,6 +13,17 @@ import { filterImageFromURL, deleteLocalFiles } from "./util/util";
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
 
+  // Root Endpoint
+  // Displays a simple message to the user
+  app.get("/", async (req: Request, res: Response) => {
+    try {
+      return res.status(200).send(`welcome to the image filter service`);
+    } catch (e) {
+      console.log(e);
+      return res.status(500);
+    }
+  });
+
   app.get("/filteredimage", async (req: Request, res: Response) => {
     try {
       const imageURL = req.query.image_url;
